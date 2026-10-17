@@ -18,6 +18,7 @@ const awards = [
  {title:'傩面数脉',year:'2025',award:'全国大学生数字媒体科技作品及创意竞赛 · 湖南赛区三等奖',image:'award-digital-third.webp'},
  {title:'融创二胡制作篇',year:'2025',award:'竞赛证书 · 银奖',image:'award-silver-preview.webp',pdf:'award-silver.pdf'},
  {title:'融创二胡制作篇',year:'2025',award:'全国赛参评作品证书',image:'award-national-preview.webp',pdf:'award-national.pdf'},
+ {title:'融创二胡制作篇',year:'2025',award:'BIAF 2025 国际图形设计大赛 · 铜奖',image:'award-biaf-bronze-2025.webp'},
  {title:'傩韵融创',year:'2025',award:'竞赛作品证书',image:'award-nuo-preview.webp',pdf:'award-nuo.pdf'}
 ];
 const $=s=>document.querySelector(s), asset=f=>'assets/'+f+'?v=20261018b';
