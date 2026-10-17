@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" role="img" aria-labelledby="title desc">
+  <title id="title">8月6日动态影像封面</title>
+  <desc id="desc">以日期、片名和播放符号构成的深蓝灰色短片封面</desc>
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#17202d"/>
+      <stop offset=".58" stop-color="#41566b"/>
+      <stop offset="1" stop-color="#9aabba"/>
+    </linearGradient>
+    <radialGradient id="light" cx="78%" cy="18%" r="75%">
+      <stop stop-color="#d8e4ee" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#d8e4ee" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1000" fill="url(#ground)"/>
+  <rect width="1200" height="1000" fill="url(#light)"/>
+  <rect width="1200" height="1000" fill="url(#grid)"/>
+  <path d="M0 720C230 660 365 790 585 704S930 565 1200 630V1000H0Z" fill="#121925" fill-opacity=".72"/>
+  <circle cx="1015" cy="205" r="112" fill="none" stroke="#edf2f5" stroke-opacity=".58" stroke-width="2"/>
+  <circle cx="1015" cy="205" r="70" fill="none" stroke="#edf2f5" stroke-opacity=".35" stroke-width="2"/>
+  <text x="76" y="104" fill="#f1f3f4" font-family="Arial,sans-serif" font-size="25" letter-spacing="6">VIDEO EDITING  /  CAPCUT</text>
+  <path d="M76 139H1124" stroke="#f1f3f4" stroke-opacity=".45"/>
+  <text x="76" y="542" fill="#fff" font-family="Arial,sans-serif" font-size="182" font-weight="700" letter-spacing="-7">08·06</text>
+  <text x="84" y="628" fill="#f1f3f4" font-family="Arial,sans-serif,'PingFang SC',sans-serif" font-size="45" letter-spacing="5">8月6日</text>
+  <text x="84" y="858" fill="#f1f3f4" fill-opacity=".84" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">A SHORT FILM BY ZHU RUI</text>
+  <text x="84" y="903" fill="#f1f3f4" fill-opacity=".58" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">AUGUST 6  /  PERSONAL VIDEO</text>
+  <circle cx="1080" cy="850" r="43" fill="#f2f0e9"/>
+  <path d="M1068 829L1102 850L1068 871Z" fill="#25313d"/>
+</svg>
