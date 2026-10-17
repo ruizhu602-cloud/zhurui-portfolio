@@ -1,0 +1,204 @@
+/* ============================================================
+   motion.css —— 动效层 v2（明显加强版，独立文件）
+   想完全还原：删掉 HTML 里的 motion.css 与 motion.js 两行即可。
+   设计原则：所有动画只用 translate / scale / clip-path / opacity，
+   绝不使用 transform——以免覆盖原有样式里的 transform 细节
+   （.hero-preview 的 2° 倾斜、.feature/.card 的悬停浮起）。
+   ============================================================ */
+
+:root {
+  --motion-ease: cubic-bezier(.22, .61, .36, 1);
+  --motion-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --motion-ease-soft: cubic-bezier(.33, 1, .68, 1);
+  --motion-dur: .95s;
+  --motion-stagger: 110ms;
+}
+
+html.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* ---------- 1. 顶部阅读进度条（更明显：3px + 柔光） ---------- */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 60;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #0071e3, #4aa8ff, #2997ff);
+  box-shadow: 0 0 12px rgba(41, 151, 255, .55);
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ---------- 2. 导航滚动态 ---------- */
+.nav { transition: background .5s var(--motion-ease), box-shadow .5s var(--motion-ease); }
+.nav-inner { transition: height .5s var(--motion-ease); }
+.nav.is-scrolled {
+  background: rgba(250, 250, 252, .95);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .06), 0 14px 40px rgba(0, 0, 0, .07);
+}
+.nav.is-scrolled .nav-inner { height: 58px; }
+.nav.is-scrolled .brand { font-size: 24px; }
+.brand { transition: font-size .5s var(--motion-ease); }
+
+/* ============================================================
+   3. 首屏入场 —— 标题用「遮罩掀起」，其余元素错峰升起
+   ============================================================ */
+@keyframes motion-rise {
+  from { opacity: 0; translate: 0 40px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+@keyframes motion-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes motion-preview {
+  from { opacity: 0; translate: 0 55px; scale: .95; }
+  to   { opacity: 1; translate: 0 0; scale: 1; }
+}
+/* 遮罩掀起：文字从下往上"被揭开"，比单纯位移明显得多 */
+@keyframes motion-title-mask {
+  from { clip-path: inset(0 0 100% 0); translate: 0 26px; }
+  60%  { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); translate: 0 0; }
+}
+
+.hero-intro > * { animation: motion-rise 1.05s var(--motion-ease-out) both; }
+.hero-intro > *:nth-child(1) { animation-delay: .05s; }
+.hero-intro > *:nth-child(2) { animation-delay: .18s; }
+.hero-intro > *:nth-child(3) { animation-delay: .42s; }
+.hero-intro > *:nth-child(4) { animation-delay: .56s; }
+.hero-intro > *:nth-child(5) { animation-delay: .68s; }
+
+/* 标题整体做遮罩掀起，后半句稍晚，形成两段节奏 */
+.hero h1 { animation: motion-title-mask 1.15s var(--motion-ease-out) both; animation-delay: .16s; }
+.hero h1 span { display: inline-block; animation: motion-rise 1s var(--motion-ease-out) both; animation-delay: .52s; }
+
+.hero-preview { animation: motion-preview 1.15s var(--motion-ease-out) both; animation-delay: .44s; }
+.hero-foot { animation: motion-fade .9s var(--motion-ease-out) both; animation-delay: .78s; }
+
+/* ============================================================
+   4. 滚动揭示 —— 位移更大、时长更长、错峰更明显
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  translate: 0 52px;
+  transition:
+    opacity 1s var(--motion-ease-out),
+    translate 1s var(--motion-ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-in { opacity: 1; translate: 0 0; }
+
+/* ============================================================
+   5. 图片「掀开」揭示 —— 高质感作品集最标志性的一项
+   clip-path 从下往上揭开，同时轻微回缩
+   ============================================================ */
+.wipe {
+  clip-path: inset(40% 0 0 0);
+  scale: 1.035;
+  transition:
+    clip-path 1.1s var(--motion-ease-out),
+    scale 1.4s var(--motion-ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.wipe.is-in { clip-path: inset(0 0 0 0); scale: 1; }
+
+/* ============================================================
+   6. 悬停微交互（加强）
+   ============================================================ */
+@media (hover: hover) {
+  .feature { transition: translate .55s var(--motion-ease), box-shadow .55s var(--motion-ease); }
+  .feature:hover { translate: 0 -8px; }
+  .card-media { transition: box-shadow .55s var(--motion-ease); }
+  .card:hover .card-media { box-shadow: 0 22px 52px rgba(29, 29, 31, .16); }
+  .card { transition: translate .55s var(--motion-ease); }
+  .card:hover { translate: 0 -7px; }
+  .feature:hover .art { transform: scale(1.055); }
+  .card:hover .card-media img { transform: scale(1.055); }
+  .filters button:hover { background: #dcdce1; }
+  .filters button.active:hover { background: #000; }
+  .index-trigger { transition: background .3s var(--motion-ease), border-color .3s var(--motion-ease), translate .3s var(--motion-ease); }
+  .index-trigger:hover { background: #fff; border-color: rgba(0, 0, 0, .18); translate: 0 -1px; }
+  .index-row { transition: background .35s var(--motion-ease), padding-left .35s var(--motion-ease); }
+  .index-row:hover { padding-left: 10px; }
+  .close { transition: background .3s var(--motion-ease), rotate .35s var(--motion-ease); }
+  .close:hover { rotate: 90deg; }
+  .project-next { transition: background .4s var(--motion-ease), translate .4s var(--motion-ease); }
+  .project-next:hover { background: #e4e4e9; translate: 0 -3px; }
+  .image-button { transition: box-shadow .5s var(--motion-ease); }
+  .image-button:hover { box-shadow: 0 16px 44px rgba(0, 0, 0, .14); }
+}
+
+/* ---------- 7. 图片渐显（保留 1.5s 兜底，绝不永久隐藏） ---------- */
+img.motion-img { transition: opacity .6s var(--motion-ease); }
+img.motion-img.img-pending { opacity: 0; }
+
+/* ---------- 8. 弹窗开合 ---------- */
+dialog[open] { animation: motion-rise .5s var(--motion-ease-out); }
+dialog[open]::backdrop { animation: motion-fade .45s ease; }
+
+/* ============================================================
+   9. 原生滚动视差（幅度加大，零 JS，仅支持的浏览器生效）
+   用独立的 translate 属性，不与悬停 transform 冲突
+   ============================================================ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes motion-parallax {
+      from { translate: 0 -5.5%; }
+      to   { translate: 0 5.5%; }
+    }
+    @keyframes motion-parallax-soft {
+      from { translate: 0 -3%; }
+      to   { translate: 0 3%; }
+    }
+    .feature .art {
+      animation: motion-parallax linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    .hero-preview img,
+    .card-media img {
+      animation: motion-parallax-soft linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+/* ---------- 10. 无障碍降级（必须放最后） ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #scroll-progress { display: none; }
+  .reveal { opacity: 1 !important; translate: 0 0 !important; transition: none !important; }
+  .wipe { clip-path: none !important; scale: 1 !important; transition: none !important; }
+  .hero-intro > *, .hero h1, .hero h1 span, .hero-preview, .hero-foot,
+  dialog[open], dialog[open]::backdrop,
+  .feature .art, .hero-preview img, .card-media img { animation: none !important; }
+  img.motion-img.img-pending { opacity: 1 !important; }
+  .nav-inner, .nav, .brand, .feature, .card, .card-media, .close,
+  .project-next, .index-row, .index-trigger, .image-button { transition: none !important; }
+}
+
+/* Original folio-cover motion, informed by Anime.js timeline/stagger patterns. */
+.cover-art-svg{display:block;width:100%;height:100%;overflow:hidden}
+.cover-desktop{display:inline}
+.cover-mobile{display:none}
+.cover-title-char{opacity:0;animation:cover-title-in .95s cubic-bezier(.2,.8,.2,1) forwards}
+.cover-title-char.char-one{animation-delay:.12s}
+.cover-title-char.char-two{animation-delay:.27s}
+.cover-title-char.char-three{animation-delay:.42s}
+.cover-stack{translate:var(--cover-shift-x,0px) var(--cover-shift-y,0px);transition:translate .35s cubic-bezier(.2,.8,.2,1)}
+.cover-stack,.mobile-folio{perspective:1400px;transform-style:preserve-3d}
+.page-back,.page-middle,.page-front,.mobile-page-back,.mobile-page-middle,.mobile-page-front{transform-box:fill-box;backface-visibility:hidden}
+.page-back,.page-middle,.page-front,.mobile-page-back,.mobile-page-middle,.mobile-page-front{transform-origin:left center;-webkit-backface-visibility:hidden;backface-visibility:hidden;will-change:transform,filter,opacity}
+.page-back,.mobile-page-back{transform:perspective(1300px) rotateY(0deg) rotateZ(-1.4deg)}
+.page-middle,.mobile-page-middle{transform:perspective(1300px) rotateY(0deg) rotateZ(1.2deg)}
+.page-front,.mobile-page-front{transform:perspective(1300px) rotateY(0deg) rotateZ(-.4deg)}
+.cover-orbit-mark{animation:folio-mark-drift 6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.folio-mark{animation:folio-mark-light 4s ease-in-out infinite alternate}
+.mobile-title{animation:cover-title-in 1s .25s cubic-bezier(.2,.8,.2,1) both}
+@keyframes cover-title-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes folio-mark-drift{from{transform:translateY(0)}to{transform:translateY(-11px)}}
+@keyframes folio-mark-light{from{opacity:.92}to{opacity:.68}}
+@media(max-width:650px){.cover-desktop{display:none}.cover-mobile{display:inline}}
+@media(prefers-reduced-motion:reduce){.cover-title-char,.cover-orbit-mark,.folio-mark,.mobile-title{animation:none!important;opacity:1!important}.cover-title-char{opacity:1!important}.page-back,.page-middle,.page-front,.mobile-page-back,.mobile-page-middle,.mobile-page-front{transform:none!important;filter:none!important;will-change:auto}}
