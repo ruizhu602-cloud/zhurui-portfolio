@@ -20,7 +20,7 @@ const awards = [
  {title:'融创二胡制作篇',year:'2025',award:'全国赛参评作品证书',image:'award-national-preview.webp',pdf:'award-national.pdf'},
  {title:'傩韵融创',year:'2025',award:'竞赛作品证书',image:'award-nuo-preview.webp',pdf:'award-nuo.pdf'}
 ];
-const $=s=>document.querySelector(s), asset=f=>'assets/'+f;
+const $=s=>document.querySelector(s), asset=f=>'assets/'+f+'?v=20261018b';
 const indexDialog=$('#index-dialog'),projectDialog=$('#project-dialog'),imageDialog=$('#image-dialog');
 let activeProject=null, returnFocus=null;
 var campaignSlider=null;
