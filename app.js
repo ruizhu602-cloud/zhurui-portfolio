@@ -21,7 +21,7 @@ const awards = [
  {title:'融创二胡制作篇',year:'2025',award:'BIAF 2025 国际图形设计大赛 · 铜奖',image:'award-biaf-bronze-2025.webp'},
  {title:'傩韵融创',year:'2025',award:'竞赛作品证书',image:'award-nuo-preview.webp',pdf:'award-nuo.pdf'}
 ];
-const $=s=>document.querySelector(s), asset=f=>'assets/'+f+'?v=20261018b';
+const $=s=>document.querySelector(s), asset=f=>'assets/'+f+'?v=20261018c';
 const indexDialog=$('#index-dialog'),projectDialog=$('#project-dialog'),imageDialog=$('#image-dialog');
 let activeProject=null, returnFocus=null;
 var campaignSlider=null;
