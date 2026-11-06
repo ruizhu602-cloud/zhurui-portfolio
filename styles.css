@@ -198,3 +198,12 @@ footer{max-width:none;border-top:1px solid var(--line);padding-inline:clamp(20px
 
 /* Photographic campaign series: preserve complete poster compositions. */
 .event-sequence .image-button{aspect-ratio:2/3}.event-case .image-button img{max-height:none}.portfolio-index-card[data-project="event"] img{object-position:center 38%}
+
+/* Film cover uses the existing film still; readable live typography. */
+.card[data-id="video"] .card-media{position:relative;isolation:isolate;background:#132231}
+.card[data-id="video"] .card-media:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,20,34,.18),transparent 30%,rgba(7,20,34,.78));z-index:1;pointer-events:none}
+.card[data-id="video"] .card-media:after{display:none}
+.card[data-id="video"] .card-media img{width:100%;height:100%;object-fit:cover}
+.film-cover-copy{position:absolute;left:7%;right:20%;bottom:9%;z-index:2;display:grid;gap:9px;color:#fff;text-align:left;pointer-events:none}
+.film-cover-copy small{font-size:9px;letter-spacing:.16em}.film-cover-copy strong{font-family:Georgia,"Songti SC",serif;font-size:clamp(28px,4vw,48px);font-weight:400;line-height:1.1}.film-cover-copy em{font-size:12px;font-style:normal;letter-spacing:.06em}
+.card[data-id="video"] .plus{z-index:3;font-size:18px}.card[data-id="video"]:hover .plus{transform:none}
