@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
+  <title id="title">敷尔佳青年自信主题视觉：泛红退散</title>
+  <desc id="desc">薄荷色底上的平面环形线条与深绿标题，呈现稳稳守护好状态。</desc>
+  <rect width="1536" height="1024" fill="#DCECE3"/>
+  <rect x="0" y="0" width="22" height="1024" fill="#0B5149"/>
+  <g fill="none" stroke="#0B5149" stroke-width="3" opacity=".78">
+    <circle cx="1110" cy="496" r="255"/><circle cx="1110" cy="496" r="207"/>
+    <circle cx="1110" cy="496" r="158"/><circle cx="1110" cy="496" r="109"/>
+  </g>
+  <path d="M1110 241v510M855 496h510" stroke="#0B5149" stroke-opacity=".55" stroke-width="2"/>
+  <circle cx="1110" cy="496" r="21" fill="#D8ED69"/>
+  <text x="94" y="110" fill="#0B5149" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="3">敷尔佳</text>
+  <text x="1440" y="110" text-anchor="end" fill="#0B5149" font-family="Arial, sans-serif" font-size="18" letter-spacing="3">青年自信主题视觉</text>
+  <path d="M94 145H1440" stroke="#0B5149" stroke-opacity=".3" stroke-width="2"/>
+  <text x="92" y="402" fill="#0B5149" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="138" font-weight="700" letter-spacing="2">泛红退散</text>
+  <rect x="96" y="456" width="510" height="4" fill="#0B5149"/>
+  <text x="96" y="565" fill="#0B5149" font-family="Songti SC, Noto Serif CJK SC, serif" font-size="50">稳稳守护好状态</text>
+  <text x="100" y="898" fill="#0B5149" font-family="Arial, sans-serif" font-size="17" letter-spacing="4">CARE, WITH CONFIDENCE</text>
+  <text x="1440" y="898" text-anchor="end" fill="#0B5149" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">敷尔佳 / 活动视觉延展</text>
+</svg>
